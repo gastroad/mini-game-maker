@@ -1,0 +1,11 @@
+.maze-list {
+    color: white;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    li {
+        border-bottom: 1px solid gray;
+    }
+    > :nth-last-child(1) {
+        border: none;
+    }
+}

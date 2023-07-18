@@ -1,0 +1,29 @@
+.maze-list-item {
+    color: white;
+    // border: 1px solid;
+    border-radius: 5px;
+    padding: 0.5rem;
+    box-sizing: border-box;
+    .maze-list-item-title {
+        text-align: left;
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+    .maze-list-item-info {
+        display: none;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        font-size: 0.8rem;
+        > :nth-child(1) {
+            text-align: left;
+        }
+        > :nth-child(2) {
+            text-align: right;
+            color: gray;
+        }
+        > .btn {
+            margin-top: 0.5rem;
+            grid-column: span 2;
+        }
+    }
+}

@@ -1,0 +1,25 @@
+@import "../../../assets/style/variables.scss";
+.maze-cell {
+    &.start {
+        background-image: url(../../../assets/img/start.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+    }
+    &.end {
+        background-image: url(../../../assets/img/flag.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+    }
+    &.wall {
+        background-color: $deep-blue-color;
+        border-radius: 3px;
+    }
+    &.road {
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    }
+    &.resolve {
+        background-color: darken(#3c4043, 7%);
+    }
+}

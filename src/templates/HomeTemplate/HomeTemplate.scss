@@ -1,0 +1,14 @@
+.home-template {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+    height: 100vh;
+    > * {
+        margin-bottom: 1rem !important;
+    }
+    > .btn {
+        width: calc(100% - 3rem);
+        text-align: center;
+    }
+}

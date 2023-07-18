@@ -1,0 +1,12 @@
+.maze-player {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition-duration: 0.8s;
+    z-index: 1;
+    > img {
+        background-color: white;
+        border-radius: 50%;
+    }
+}
