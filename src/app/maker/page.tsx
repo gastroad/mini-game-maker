@@ -79,7 +79,7 @@ export default function Maker() {
     const body = {
       ...maze,
       mazeData: mazeData,
-      ...startEndState,
+      ...startEnd,
       resolvedPath: path
     };
     const res = await postMaze(body)
