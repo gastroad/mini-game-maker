@@ -6,30 +6,37 @@ import arrowURL from '../../assets/img/arrow.png';
 import MazeMaker from '@components/organisms/MazeMaker';
 import MazeForm from '@components/organisms/MazeForm/MazeForm';
 
+import type { CellType, PointType } from '@type/maze';
+import type {
+  mazeStateType,
+  startEndStateType,
+  mazeDataStateType,
+} from 'src/state/maker/atoms';
 import './MakerTemplate.scss';
-import { CellType, MazeBoardType } from '@type/maze';
 
-export interface MakerTemplateProps extends MazeBoardType {
+export interface MakerTemplateProps {
+  maze: mazeStateType;
   currentType: CellType;
-  mazeSize: { row: number; col: number };
-  handleMazeSize: (e: ChangeEvent<HTMLInputElement>) => void;
+  startEnd: startEndStateType;
+  mazeData: mazeDataStateType;
+  resolvedPath: PointType[];
+  handleMaze: (e: ChangeEvent<HTMLInputElement>) => void;
+  handleMazeCellClick: (col: number, row: number) => void;
   handleCurrentType: (e: MouseEvent<HTMLButtonElement>) => void;
   handlePrevButton: () => void;
-  handleMazeCellClick: (col: number, row: number) => void;
   handleResolveButton: () => void;
 }
 const MakerTemplate: FC<MakerTemplateProps> = ({
+  maze,
   mazeData,
-  start,
-  end,
+  startEnd,
   resolvedPath,
   currentType,
-  mazeSize,
+  handleMaze,
   handlePrevButton,
   handleMazeCellClick,
   handleCurrentType,
   handleResolveButton,
-  handleMazeSize,
 }) => {
   return (
     <>
@@ -38,14 +45,13 @@ const MakerTemplate: FC<MakerTemplateProps> = ({
           <Image src={arrowURL} alt="뒤로가기" onClick={handlePrevButton} />
         </NavigationBar>
         <MapTitle title={'Maker'} />
-        <MazeForm handleMazeSize={handleMazeSize} mazeSize={mazeSize} />
+        <MazeForm maze={maze} handleMaze={handleMaze} />
         <MazeMaker
           mazeData={mazeData}
-          start={start}
-          end={end}
+          startEnd={startEnd}
           resolvedPath={resolvedPath}
-          handleMazeCellClick={handleMazeCellClick}
           currentType={currentType}
+          handleMazeCellClick={handleMazeCellClick}
           handleCurrentType={handleCurrentType}
           handleResolveButton={handleResolveButton}
         />

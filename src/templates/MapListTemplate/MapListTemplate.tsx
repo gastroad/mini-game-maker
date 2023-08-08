@@ -11,17 +11,17 @@ import './MapListTemplate.scss';
 import { MazeType } from '@type/maze';
 
 export interface MapListTemplateProps {
-  mazeList: MazeType[]
+  mazeList: MazeType[];
 }
 const MapListTemplate: FC<MapListTemplateProps> = ({ mazeList }) => {
   const router = useRouter();
 
   const handlePrevButton = () => {
     router.back();
-  }
+  };
   const handlePlayButton = (id: string) => {
-    router.push(`/maplist/${id}`)
-  }
+    router.push(`/maplist/${id}`);
+  };
   return (
     <>
       <div className="maker-template">

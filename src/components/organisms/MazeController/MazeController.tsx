@@ -50,7 +50,7 @@ const MazeController: FC<MazeControllerProps> = ({
       </div>
       <Button
         onClick={handleResolveButton}
-        label="find"
+        label="find & submit"
         type="primary"
         name="road"
       />

@@ -4,17 +4,20 @@ import MazeController from '@components/organisms/MazeController/MazeController'
 
 import './MazeMaker.scss';
 import { MazeBoardType, PointType, CellType } from '@type/maze';
+import { startEndStateType } from 'src/state/maker/atoms';
 
-export interface MazeMakerProps extends MazeBoardType {
+export interface MazeMakerProps {
   currentType: CellType;
+  mazeData: number[][];
+  startEnd: startEndStateType;
+  resolvedPath?: PointType[];
   handleMazeCellClick: (col: number, row: number) => void;
   handleCurrentType: (e: MouseEvent<HTMLButtonElement>) => void;
   handleResolveButton: () => void;
 }
 const MazeMaker: FC<MazeMakerProps> = ({
   mazeData,
-  start,
-  end,
+  startEnd,
   resolvedPath,
   currentType,
   handleResolveButton,
@@ -37,8 +40,8 @@ const MazeMaker: FC<MazeMakerProps> = ({
     <div className="maze-game" style={{ height: height }} ref={mazeBoardRef}>
       <MazeBoard
         mazeData={mazeData}
-        start={start}
-        end={end}
+        start={startEnd.start}
+        end={startEnd.end}
         height={height}
         resolvedPath={resolvedPath}
         handleMazeCellClick={handleMazeCellClick}

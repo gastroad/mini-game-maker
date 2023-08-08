@@ -5,7 +5,7 @@ import { MazeBoardType, PointType } from '@type/maze';
 
 import './MazeGame.scss';
 
-export interface MazeGameProps extends MazeBoardType { }
+export interface MazeGameProps extends MazeBoardType {}
 const MazeGame: FC<MazeGameProps> = ({
   mazeData,
   start,

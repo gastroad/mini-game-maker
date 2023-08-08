@@ -15,7 +15,7 @@ const MazeBoard: FC<MazeBoardProps> = ({
   end,
   height,
   resolvedPath,
-  handleMazeCellClick = () => { },
+  handleMazeCellClick = () => {},
 }: MazeBoardProps) => {
   return (
     <div
@@ -45,12 +45,12 @@ const MazeBoard: FC<MazeBoardProps> = ({
               const type = isStartPoint
                 ? 'start'
                 : isEndPoint
-                  ? 'end'
-                  : isWall
-                    ? 'wall'
-                    : isResolvedPath
-                      ? 'resolve'
-                      : 'road';
+                ? 'end'
+                : isWall
+                ? 'wall'
+                : isResolvedPath
+                ? 'resolve'
+                : 'road';
               return (
                 <MazeCell
                   key={`maze-${i}-${j}`}

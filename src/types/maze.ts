@@ -9,16 +9,16 @@ export interface MazeBoardType {
   start: PointType;
   end: PointType;
   mazeData: number[][];
-  resolvedPath?: PointType[]
+  resolvedPath?: PointType[];
 }
 export interface MazeSizeType {
-  col: number,
-  row: number
+  col: number;
+  row: number;
 }
 
 export interface MazeType extends MazeBoardType {
-  id: string
-  title: string
-  name: string
-  mazeSize: MazeSizeType
+  id: string;
+  title: string;
+  name: string;
+  mazeSize: MazeSizeType;
 }

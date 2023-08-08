@@ -23,9 +23,7 @@ export default function RootLayout({
           borderRadius: '5px',
         }}
       >
-        <Recoil>
-          {children}
-        </Recoil>
+        <Recoil>{children}</Recoil>
       </body>
     </html>
   );

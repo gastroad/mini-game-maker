@@ -1,121 +1,111 @@
 'use client';
-
-import { ChangeEvent, MouseEvent, useEffect, useState } from 'react';
-import { findPath } from '@utils/index';
-import MakerTemplate from '@templates/MakerTemplate/MakerTemplate';
+import { ChangeEvent, MouseEvent, useEffect } from 'react';
+import { useRecoilState } from 'recoil';
 import { useRouter } from 'next/navigation';
-import { CellType, PointType } from '@type/maze';
+
+import MakerTemplate from '@templates/MakerTemplate';
+import { findPath } from '@utils/index';
+import { CellType } from '@type/maze';
+import { postMaze } from '@api/maze';
+import {
+  mazeState,
+  mazeDataState,
+  currentTypeState,
+  resolvedPathState,
+  startEndState,
+} from 'src/state/maker/atoms';
 
 export default function Maker() {
   const router = useRouter();
-  const [currentType, setCurrentType] = useState<CellType>('start');
-  const [title, setTtile] = useState('');
-  const [name, setName] = useState('');
-  const [mazeSize, setMazeSize] = useState({ row: 10, col: 10 });
-  const [mazeData, setMazeData] = useState<number[][]>([[]]);
-  const [start, setStart] = useState({ x: 0, y: 0 });
-  const [end, setEnd] = useState({ x: 3, y: 4 });
-  const [resolvedPath, setResolvedPath] = useState<PointType[]>([]);
-
+  const [maze, setMaze] = useRecoilState(mazeState);
+  const [currentType, setCurrentType] = useRecoilState(currentTypeState);
+  const [mazeData, setMazeData] = useRecoilState(mazeDataState);
+  const [resolvedPath, setResolvedPath] = useRecoilState(resolvedPathState);
+  const [startEnd, setStartEnd] = useRecoilState(startEndState);
 
   useEffect(() => {
-    const mazeData = new Array(mazeSize.col).fill(0).map(() => {
-      return new Array(mazeSize.row).fill(0);
+    const mazeData = new Array(maze.mazeSize.col).fill(0).map(() => {
+      return new Array(maze.mazeSize.row).fill(0);
     });
     setMazeData(mazeData);
-  }, [mazeSize]);
+  }, [maze.mazeSize]);
 
-  const handleMazeSize = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleMaze = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    if (Number(value) >= 0 && Number.isInteger(Number(value))) {
-      setMazeSize({ ...mazeSize, [name]: Number(value) });
+    if (name === 'col' || name === 'row') {
+      if (Number(value) >= 0 && Number.isInteger(Number(value))) {
+        setMaze({
+          ...maze,
+          mazeSize: { ...maze.mazeSize, [name]: Number(value) },
+        });
+      }
+    } else {
+      setMaze({ ...maze, [name]: value });
     }
   };
+
   const handleCurrentType = (e: MouseEvent<HTMLButtonElement>) => {
     const { name } = e.target as HTMLButtonElement;
     setCurrentType(name as CellType);
   };
 
   const handleMazeCellClick = (col: number, row: number) => {
-    let nextMazeData = { ...mazeData };
+    let nextMazeData: number[][];
+
     switch (currentType) {
       case 'start':
-        setStart({ x: col, y: row });
-        nextMazeData = mazeData.map((cell, i) => {
-          if (i === col) return cell.map((value, j) => (j === row ? 0 : value));
-          return cell;
-        });
-        break;
       case 'end':
-        setEnd({ x: col, y: row });
-        nextMazeData = mazeData.map((cell, i) => {
-          if (i === col) return cell.map((value, j) => (j === row ? 0 : value));
-          return cell;
-        });
+        setStartEnd({ ...startEnd, [currentType]: { x: col, y: row } });
         break;
+
       case 'wall':
-        nextMazeData = mazeData.map((cell, i) => {
-          if (i === col) return cell.map((value, j) => (j === row ? 1 : value));
-          return cell;
-        });
-        break;
       case 'road':
-        nextMazeData = mazeData.map((cell, i) => {
-          if (i === col) return cell.map((value, j) => (j === row ? 0 : value));
-          return cell;
-        });
+        nextMazeData = mazeData.map((cell, i) =>
+          i === col
+            ? cell.map((value, j) =>
+              j === row ? (currentType === 'wall' ? 1 : 0) : value,
+            )
+            : cell,
+        );
+        setMazeData(nextMazeData);
         break;
     }
-    setMazeData(nextMazeData);
   };
 
-  const handleResolveButton = () => {
-    const path = findPath(mazeData, start, end);
-    if (path) {
-      setResolvedPath(path);
-    } else {
-      alert('결과 없음');
+  const handleResolveButton = async () => {
+    const path = findPath(mazeData, startEnd.start, startEnd.end);
+    if (!path) return alert('결과 없음');
+    setResolvedPath(path);
+    const body = {
+      ...maze,
+      mazeData: mazeData,
+      ...startEndState,
+      resolvedPath: path
+    };
+    const res = await postMaze(body)
+    if (res.status === "success") {
+      router.push("/")
     }
   };
+
   const handlePrevButton = () => {
     router.back();
   };
 
-  const temp = async () => {
-    const body = {
-      title: title,
-      name: name,
-      mazeSize: mazeSize,
-      mazeData: mazeData,
-      start: start,
-      end: end,
-      resolvedPath: resolvedPath,
-    }
-    await fetch("http://localhost:3000/api/mazelist", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    });
-  }
-
   return (
     <>
       <MakerTemplate
+        maze={maze}
         mazeData={mazeData}
-        start={start}
-        end={end}
         resolvedPath={resolvedPath}
-        mazeSize={mazeSize}
+        startEnd={startEnd}
         currentType={currentType}
-        handleMazeSize={handleMazeSize}
+        handleMaze={handleMaze}
         handleCurrentType={handleCurrentType}
         handlePrevButton={handlePrevButton}
         handleMazeCellClick={handleMazeCellClick}
         handleResolveButton={handleResolveButton}
       />
-      <button style={{ color: "white" }} onClick={() => { temp() }}>qweqweqwe</button>
     </>
   );
 }

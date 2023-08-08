@@ -1,8 +1,6 @@
-import { atom } from "recoil";
+import { atom } from 'recoil';
 
 export const maplistState = atom({
-    key: "maplistState",
-    default: "",
+  key: 'maplistState',
+  default: '',
 });
-
-
