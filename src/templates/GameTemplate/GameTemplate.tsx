@@ -1,46 +1,50 @@
-import { FC } from 'react';
+'use client';
+
+import { FC, useState } from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import MazeGame from '@components/organisms/MazeGame/MazeGame';
-import { MazeBoardType, PointType } from '@type/maze';
 import arrowURL from '../../assets/img/arrow.png';
 import Button from '@components/atoms/Button';
 import ScoreBoard from '@components/molecules/ScoreBoard';
 import MapTitle from '@components/atoms/MapTitle';
 import NavigationBar from '@components/molecules/NavigationBar/NavigationBar';
 
+import { usePlayerController } from 'src/hooks/usePlayerController';
+
 import './GameTemplate.scss';
 
-export interface GameTemplateProps extends MazeBoardType {
-  score: number;
-  title: string;
-  handlePrevButton: () => void;
-  handleResetButton: () => void;
-  handleResolveButton: () => void;
+export interface GameTemplateProps {
+  maze: any;
 }
-const GameTemplate: FC<GameTemplateProps> = ({
-  mazeData,
-  start,
-  end,
-  score,
-  title,
-  resolvedPath,
-  handlePrevButton,
-  handleResetButton,
-  handleResolveButton,
-}) => {
+const GameTemplate: FC<GameTemplateProps> = ({ maze }) => {
+  const router = useRouter();
+  const { player, score, answer, resetPlayerAndScore, toggleAnswer } =
+    usePlayerController(maze.mazeData, maze.end);
+
+  const handlePrevButton = () => {
+    router.back();
+  };
+  const handleResetButton = () => {
+    resetPlayerAndScore();
+  };
+  const handleResolveButton = () => {
+    toggleAnswer();
+  };
   return (
     <>
       <div className="game-template">
         <NavigationBar>
           <Image src={arrowURL} alt="뒤로가기" onClick={handlePrevButton} />
         </NavigationBar>
-        <MapTitle title={title} />
+        <MapTitle title={maze.title} />
         <ScoreBoard score={score} />
         <MazeGame
-          mazeData={mazeData}
-          start={start}
-          end={end}
-          resolvedPath={resolvedPath}
+          mazeData={maze.mazeData}
+          start={maze.start}
+          end={maze.end}
+          resolvedPath={answer ? maze.resolvedPath : []}
+          player={player}
         />
         <div className="button-wrapper">
           <Button onClick={handleResetButton} label="Reset" type="primary" />

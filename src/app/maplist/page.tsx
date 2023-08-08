@@ -1,7 +1,9 @@
 import MapListTemplate from '@templates/MapListTemplate/MapListTemplate';
 
 async function getData() {
-  const res = await fetch('http://localhost:3000/api/mazelist');
+  const res = await fetch('http://localhost:3000/api/mazelist', {
+    cache: 'no-store',
+  });
 
   if (!res.ok) throw new Error('Failed to fetch data');
 

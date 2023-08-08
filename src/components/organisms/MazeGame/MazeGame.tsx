@@ -5,12 +5,15 @@ import { MazeBoardType, PointType } from '@type/maze';
 
 import './MazeGame.scss';
 
-export interface MazeGameProps extends MazeBoardType {}
+export interface MazeGameProps extends MazeBoardType {
+  player: any;
+}
 const MazeGame: FC<MazeGameProps> = ({
   mazeData,
   start,
   end,
   resolvedPath,
+  player,
 }) => {
   const mazeBoardRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState(0);
@@ -41,12 +44,7 @@ const MazeGame: FC<MazeGameProps> = ({
         height={height}
         resolvedPath={resolvedPath}
       />
-      <MazePlayer
-        mazeData={mazeData}
-        start={start}
-        end={end}
-        playerSize={playerSize}
-      />
+      <MazePlayer player={player} playerSize={playerSize} />
     </div>
   );
 };

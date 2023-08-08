@@ -21,7 +21,7 @@ export default function RootLayout({
           minHeight: '100vh',
           border: '1px solid #3c4043',
           borderRadius: '5px',
-          boxSizing: "border-box"
+          boxSizing: 'border-box',
         }}
       >
         <Recoil>{children}</Recoil>

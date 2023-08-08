@@ -5,17 +5,11 @@ import { MazeBoardType } from '@type/maze';
 
 import './MazePlayer.scss';
 
-export interface MazePlayerProps extends MazeBoardType {
+export interface MazePlayerProps {
   playerSize: any;
+  player: any;
 }
-const MazePlayer: FC<MazePlayerProps> = ({
-  mazeData,
-  start,
-  end,
-  playerSize,
-}) => {
-  const [player, setPlayer] = useState(start);
-
+const MazePlayer: FC<MazePlayerProps> = ({ playerSize, player }) => {
   return (
     <div
       className="maze-player"

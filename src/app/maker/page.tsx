@@ -23,19 +23,19 @@ export default function Maker() {
   const [resolvedPath, setResolvedPath] = useRecoilState(resolvedPathState);
   const [startEnd, setStartEnd] = useRecoilState(startEndState);
 
-  const resetMazeState = useResetRecoilState(mazeState)
-  const resetCurrentTypeState = useResetRecoilState(currentTypeState)
-  const resetMazeDataState = useResetRecoilState(mazeDataState)
-  const resetResolvedPathState = useResetRecoilState(resolvedPathState)
-  const resetStartEndState = useResetRecoilState(startEndState)
+  const resetMazeState = useResetRecoilState(mazeState);
+  const resetCurrentTypeState = useResetRecoilState(currentTypeState);
+  const resetMazeDataState = useResetRecoilState(mazeDataState);
+  const resetResolvedPathState = useResetRecoilState(resolvedPathState);
+  const resetStartEndState = useResetRecoilState(startEndState);
 
   const resetState = () => {
-    resetMazeState()
-    resetCurrentTypeState()
-    resetMazeDataState()
-    resetResolvedPathState()
-    resetStartEndState()
-  }
+    resetMazeState();
+    resetCurrentTypeState();
+    resetMazeDataState();
+    resetResolvedPathState();
+    resetStartEndState();
+  };
 
   useEffect(() => {
     const mazeData = new Array(maze.mazeSize.col).fill(0).map(() => {
@@ -77,8 +77,8 @@ export default function Maker() {
         nextMazeData = mazeData.map((cell, i) =>
           i === col
             ? cell.map((value, j) =>
-              j === row ? (currentType === 'wall' ? 1 : 0) : value,
-            )
+                j === row ? (currentType === 'wall' ? 1 : 0) : value,
+              )
             : cell,
         );
         setMazeData(nextMazeData);
@@ -94,12 +94,12 @@ export default function Maker() {
       ...maze,
       mazeData: mazeData,
       ...startEnd,
-      resolvedPath: path
+      resolvedPath: path,
     };
-    const res = await postMaze(body)
-    if (res.status === "success") {
-      resetState()
-      router.push("/")
+    const res = await postMaze(body);
+    if (res.status === 'success') {
+      resetState();
+      router.push('/');
     }
   };
 

@@ -2,6 +2,10 @@ export async function getMazeList() {
   const res = await fetch(`http://localhost:3000/api/mazelist`);
   return res.json();
 }
+export async function getMaze(id: string) {
+  const res = await fetch(`http://localhost:3000/api/mazelist/${id}`);
+  return res.json();
+}
 export async function postMaze(body: any) {
   const res = await fetch('http://localhost:3000/api/mazelist', {
     method: 'POST',
@@ -10,7 +14,5 @@ export async function postMaze(body: any) {
     },
     body: JSON.stringify(body),
   });
-  return res.json()
+  return res.json();
 }
-
-
