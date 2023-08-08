@@ -1,6 +1,6 @@
 'use client';
 import { ChangeEvent, MouseEvent, useEffect } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useResetRecoilState } from 'recoil';
 import { useRouter } from 'next/navigation';
 
 import MakerTemplate from '@templates/MakerTemplate';
@@ -22,6 +22,20 @@ export default function Maker() {
   const [mazeData, setMazeData] = useRecoilState(mazeDataState);
   const [resolvedPath, setResolvedPath] = useRecoilState(resolvedPathState);
   const [startEnd, setStartEnd] = useRecoilState(startEndState);
+
+  const resetMazeState = useResetRecoilState(mazeState)
+  const resetCurrentTypeState = useResetRecoilState(currentTypeState)
+  const resetMazeDataState = useResetRecoilState(mazeDataState)
+  const resetResolvedPathState = useResetRecoilState(resolvedPathState)
+  const resetStartEndState = useResetRecoilState(startEndState)
+
+  const resetState = () => {
+    resetMazeState()
+    resetCurrentTypeState()
+    resetMazeDataState()
+    resetResolvedPathState()
+    resetStartEndState()
+  }
 
   useEffect(() => {
     const mazeData = new Array(maze.mazeSize.col).fill(0).map(() => {
@@ -84,6 +98,7 @@ export default function Maker() {
     };
     const res = await postMaze(body)
     if (res.status === "success") {
+      resetState()
       router.push("/")
     }
   };
