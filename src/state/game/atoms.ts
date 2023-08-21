@@ -10,6 +10,6 @@ export const scoreState = atom<number>({
   default: 0,
 });
 export const answerState = atom<boolean>({
-  key: 'scoreState',
+  key: 'answerState',
   default: false,
 });

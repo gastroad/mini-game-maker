@@ -1,23 +1,20 @@
-'use client';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
-import HomeTemplate from '@templates/HomeTemplate/HomeTemplate';
+import HomeTemplate from '@components/templates/HomeTemplate';
+import MapTitle from '@components/atoms/MapTitle/MapTitle';
 
-export default function Home() {
-  const rotuer = useRouter();
-  const handlePlayButton = () => {
-    rotuer.push('/maplist');
-  };
-  const handleMakeButton = () => {
-    rotuer.push('/maker');
-  };
+import './style.scss';
 
+export default function Page() {
   return (
-    <section>
-      <HomeTemplate
-        handleMakeButton={handleMakeButton}
-        handlePlayButton={handlePlayButton}
-      />
-    </section>
+    <HomeTemplate>
+      <MapTitle title="MazeMaker" />
+      <Link className="link-btn" href={'/maplist'}>
+        Play
+      </Link>
+      <Link className="link-btn" href={'/maker'}>
+        Make
+      </Link>
+    </HomeTemplate>
   );
 }

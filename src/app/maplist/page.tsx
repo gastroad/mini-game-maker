@@ -1,10 +1,8 @@
-import MapListTemplate from '@templates/MapListTemplate/MapListTemplate';
+import GameTemplate from '@components/templates/GameTemplate';
+import MazeList from '@components/organisms/MazeList';
 
 async function getData() {
-  const res = await fetch('http://localhost:3000/api/mazelist', {
-    cache: 'no-store',
-  });
-
+  const res = await fetch('http://localhost:3000/api/mazelist');
   if (!res.ok) throw new Error('Failed to fetch data');
 
   return res.json();
@@ -14,8 +12,8 @@ export default async function Page() {
   const { results: mazeList } = await getData();
 
   return (
-    <section>
-      <MapListTemplate mazeList={mazeList} />
-    </section>
+    <GameTemplate title="Maze List" href="/">
+      <MazeList mazeList={mazeList} />
+    </GameTemplate>
   );
 }

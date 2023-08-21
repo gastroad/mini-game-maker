@@ -1,25 +1,19 @@
 import { FC } from 'react';
 
-import './MazeList.scss';
 import MazeListItem from '@components/molecules/MazeListItem/MazeListItem';
 import { MazeType } from '@type/maze';
 
+import './MazeList.scss';
+
 export interface MazeListProps {
-  handlePlayButton: (id: string) => void;
   mazeList: MazeType[];
 }
 
-const MazeList: FC<MazeListProps> = ({ mazeList, handlePlayButton }) => {
+const MazeList: FC<MazeListProps> = ({ mazeList }) => {
   return (
     <ul className="maze-list">
       {mazeList.map((maze, index) => {
-        return (
-          <MazeListItem
-            key={`maze-${index}`}
-            maze={maze}
-            handlePlayButton={handlePlayButton}
-          />
-        );
+        return <MazeListItem key={`maze-${index}`} maze={maze} />;
       })}
     </ul>
   );

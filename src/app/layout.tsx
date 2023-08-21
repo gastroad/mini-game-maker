@@ -24,7 +24,9 @@ export default function RootLayout({
           boxSizing: 'border-box',
         }}
       >
-        <Recoil>{children}</Recoil>
+        <Recoil>
+          {children}
+        </Recoil>
       </body>
     </html>
   );

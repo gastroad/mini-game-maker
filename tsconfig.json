@@ -35,7 +35,7 @@
         "./src/components/*"
       ],
       "@templates/*": [
-        "./src/templates/*"
+        "src/components/templates/*"
       ],
       "@type/*": [
         "./src/types/*"

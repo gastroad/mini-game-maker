@@ -1,9 +1,14 @@
 export type CellType = 'start' | 'end' | 'wall' | 'road' | 'resolve';
 
+export interface MazeSizeType {
+  col: number;
+  row: number;
+}
 export interface PointType {
   x: number;
   y: number;
 }
+
 
 export interface MazeBoardType {
   start: PointType;
@@ -11,13 +16,9 @@ export interface MazeBoardType {
   mazeData: number[][];
   resolvedPath?: PointType[];
 }
-export interface MazeSizeType {
-  col: number;
-  row: number;
-}
 
 export interface MazeType extends MazeBoardType {
-  id: string;
+  id?: string;
   title: string;
   name: string;
   mazeSize: MazeSizeType;

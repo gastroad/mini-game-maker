@@ -1,0 +1,15 @@
+.link-btn {
+    color: #fff;
+    background-color: #007bff;
+    width: calc(100% - 3rem);
+    text-align: center;
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    &:hover {
+        background-color: darken(#007bff, 10%);
+    }
+    &:active {
+        background-color: darken(#007bff, 20%);
+    }
+}

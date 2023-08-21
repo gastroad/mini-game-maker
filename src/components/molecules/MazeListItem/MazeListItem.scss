@@ -1,9 +1,13 @@
 .maze-list-item {
     color: white;
-    // border: 1px solid;
     border-radius: 5px;
-    padding: 0.5rem;
     box-sizing: border-box;
+    .link {
+        display: block;
+        color: inherit;
+        text-decoration: inherit;
+        padding: 0.5rem;
+    }
     .maze-list-item-title {
         text-align: left;
         font-size: 1.5rem;

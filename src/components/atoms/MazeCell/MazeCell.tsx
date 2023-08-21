@@ -1,7 +1,8 @@
 import { FC } from 'react';
 
-import './MazeCell.scss';
 import { CellType } from '@type/maze';
+
+import './MazeCell.scss';
 
 export interface MazeCellProps {
   type: CellType;
