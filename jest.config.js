@@ -7,8 +7,11 @@ const createJestConfig = nextJest({
 const customJestConfig = {
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
   testEnvironment: 'jest-environment-jsdom',
+  collectCoverage: true,
   moduleNameMapper: {
     '^@components/(.*)$': '<rootDir>/src/components/$1',
+    '^src/(.*)$': '<rootDir>/src/$1',
+    '^@api/(.*)$': '<rootDir>/src/api/$1',
   },
 }
 

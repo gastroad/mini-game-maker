@@ -21,9 +21,9 @@ export const mockMazeData: MazeDataType = [
     [0, 0, 0, 0, 0],
 ]
 export const mockMaze: MazeType = {
-    id: 'test',
-    title: 'test',
-    name: 'test',
+    id: 'test-id',
+    title: 'test-title',
+    name: 'test-name',
     mazeSize: mockMazeSize,
     start: mockStart,
     end: mockEnd,

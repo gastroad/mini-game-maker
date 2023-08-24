@@ -20,7 +20,7 @@ const MazeCell: FC<MazeCellProps> = ({
       onClick={() => {
         handleMazeCellClick({ col, row });
       }}
-    ></div>
+    />
   );
 };
 export default MazeCell;

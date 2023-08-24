@@ -12,7 +12,7 @@ export const mazeState = atom<mazeStateType>({
   default: {
     title: '',
     name: '',
-    mazeSize: { row: 10, col: 10 },
+    mazeSize: { row: 5, col: 5 },
   },
 });
 
@@ -23,7 +23,7 @@ export const currentTypeState = atom<CellType>({
 
 export const mazeDataState = atom<MazeDataType>({
   key: 'mazeDataState',
-  default: [[]],
+  default: [[0, 0, 0, 0, 0,], [0, 0, 0, 0, 0,], [0, 0, 0, 0, 0,], [0, 0, 0, 0, 0,], [0, 0, 0, 0, 0,]],
 });
 export interface StartEndStateType {
   start: PointType;
