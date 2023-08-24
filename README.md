@@ -12,7 +12,9 @@
 npm install
 npm start
 ```
+
 [웹 서버](http:localhost:3000) 를 클릭해서 접속하실수 있습니다.
+
 ---
 
 React, TypeScript 를 사용해서 개발되었습니다.
