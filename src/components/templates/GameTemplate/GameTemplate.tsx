@@ -1,5 +1,5 @@
 import { FC, ReactNode } from 'react';
-import Link from 'next/link'
+import Link from 'next/link';
 import NavigationBar from '@components/molecules/NavigationBar/NavigationBar';
 import MapTitle from '@components/atoms/MapTitle/MapTitle';
 import Image from 'next/image';
@@ -7,16 +7,12 @@ import arrowURL from '../../../assets/img/arrow.png';
 
 import './GameTemplate.scss';
 
-export interface MakerTemplateProps {
-  title: string
-  children: ReactNode
-  href: string
+export interface GameTemplateProps {
+  title: string;
+  children: ReactNode;
+  href: string;
 }
-const GameTemplate: FC<MakerTemplateProps> = ({
-  title,
-  href,
-  children
-}) => {
+const GameTemplate: FC<GameTemplateProps> = ({ title, href, children }) => {
   return (
     <>
       <div className="game-template">
