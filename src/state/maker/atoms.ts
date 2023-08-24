@@ -1,6 +1,6 @@
 import { atom } from 'recoil';
 import { CellType } from '@type/maze';
-import { MazeSizeType } from '@type/maze';
+import { MazeSizeType, MazeDataType, PointType } from '@type/maze';
 
 export interface mazeStateType {
   title: string;
@@ -21,28 +21,23 @@ export const currentTypeState = atom<CellType>({
   default: 'start',
 });
 
-export type mazeDataStateType = number[][];
-export const mazeDataState = atom<mazeDataStateType>({
+export const mazeDataState = atom<MazeDataType>({
   key: 'mazeDataState',
   default: [[]],
 });
-export interface startEndStateType {
-  start: Position;
-  end: Position;
+export interface StartEndStateType {
+  start: PointType;
+  end: PointType;
 }
 
-export const startEndState = atom<startEndStateType>({
+export const startEndState = atom<StartEndStateType>({
   key: 'startEndState',
   default: {
     start: { x: 0, y: 0 },
     end: { x: 3, y: 4 },
   },
 });
-export type Position = {
-  x: number;
-  y: number;
-};
-export const resolvedPathState = atom<Position[]>({
+export const resolvedPathState = atom<PointType[]>({
   key: 'resolvedPathState',
   default: [],
 });

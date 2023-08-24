@@ -1,13 +1,13 @@
 import { FC } from 'react';
 
 import MazeCell from '@components/atoms/MazeCell/MazeCell';
-import { MazeBoardType } from '@type/maze';
+import { MazeBoardType, MazeSizeType } from '@type/maze';
 
 import './MazeBoard.scss';
 
 export interface MazeBoardProps extends MazeBoardType {
   height: number;
-  handleMazeCellClick?: (col: number, row: number) => void;
+  handleMazeCellClick?: ({ col, row }: MazeSizeType) => void;
 }
 const MazeBoard: FC<MazeBoardProps> = ({
   mazeData,
@@ -16,7 +16,7 @@ const MazeBoard: FC<MazeBoardProps> = ({
   height,
   resolvedPath,
   handleMazeCellClick = () => {},
-}: MazeBoardProps) => {
+}) => {
   return (
     <div
       className="maze-board"
@@ -41,7 +41,6 @@ const MazeBoard: FC<MazeBoardProps> = ({
               const isResolvedPath = Boolean(
                 resolvedPath?.filter((way) => way.x == i && way.y == j).length,
               );
-
               const type = isStartPoint
                 ? 'start'
                 : isEndPoint

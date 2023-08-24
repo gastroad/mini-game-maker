@@ -13,6 +13,7 @@ import {
 } from 'src/state/maker/atoms';
 
 import './MakerMazeMaker.scss';
+import { MazeDataType, MazeSizeType } from '@type/maze';
 
 export interface MakerMazeMakerProps {}
 const MakerMazeMaker: FC<MakerMazeMakerProps> = () => {
@@ -29,8 +30,8 @@ const MakerMazeMaker: FC<MakerMazeMakerProps> = () => {
     setMazeData(mazeData);
   }, [maze.mazeSize]);
 
-  const handleMazeCellClick = (col: number, row: number) => {
-    let nextMazeData: number[][];
+  const handleMazeCellClick = ({ col, row }: MazeSizeType) => {
+    let nextMazeData: MazeDataType;
     switch (currentType) {
       case 'start':
       case 'end':

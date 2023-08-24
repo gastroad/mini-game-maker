@@ -1,14 +1,12 @@
 import { FC } from 'react';
 
-import { CellType } from '@type/maze';
+import { CellType, MazeSizeType } from '@type/maze';
 
 import './MazeCell.scss';
 
-export interface MazeCellProps {
+export interface MazeCellProps extends MazeSizeType {
   type: CellType;
-  handleMazeCellClick?: (col: number, row: number) => void;
-  col: number;
-  row: number;
+  handleMazeCellClick?: ({ col, row }: MazeSizeType) => void;
 }
 const MazeCell: FC<MazeCellProps> = ({
   type,
@@ -20,7 +18,7 @@ const MazeCell: FC<MazeCellProps> = ({
     <div
       className={`maze-cell ${type}`}
       onClick={() => {
-        handleMazeCellClick(col, row);
+        handleMazeCellClick({ col, row });
       }}
     ></div>
   );

@@ -1,4 +1,4 @@
-import { PointType } from "@type/maze";
+import { PointType, MazeDataType } from "@type/maze";
 
 type MazeNode = {
   position: PointType;
@@ -8,7 +8,7 @@ type MazeNode = {
 };
 
 export function findPath(
-  maze: number[][],
+  maze: MazeDataType,
   start: PointType,
   end: PointType,
 ): PointType[] | null {

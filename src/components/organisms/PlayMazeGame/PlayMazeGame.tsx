@@ -7,7 +7,7 @@ import MazeBoard from '@components/molecules/MazeBoard';
 import MazePlayer from '@components/atoms/MazePlayer';
 import useResponsiveHeight from 'src/hooks/useResponsiveHeight';
 import useRecoilStateWithReset from 'src/hooks/useRecoilStateWithReset';
-import { MazeType } from '@type/maze';
+import { MazeType, PointType } from '@type/maze';
 
 import './PlayMazeGame.scss';
 
@@ -29,7 +29,7 @@ const PlayMazeGame: FC<PlayMazeGameProps> = ({ maze }) => {
     reset: resetScore,
   } = useRecoilStateWithReset(scoreState);
 
-  const handlePlayer = (nextPlayer: any) => {
+  const handlePlayer = (nextPlayer: PointType) => {
     if (
       nextPlayer.y < mazeData[0].length &&
       nextPlayer.x < mazeData.length &&

@@ -2,7 +2,7 @@
 import { FC } from 'react';
 import { useRecoilState, useResetRecoilState } from 'recoil';
 
-import Button from '@components/atoms/Button/Button';
+import Button from '@components/atoms/Button';
 import { answerState, playerState, scoreState } from 'src/state/game/atoms';
 
 import './PlayMazeController.scss';

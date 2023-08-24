@@ -1,9 +1,10 @@
 'use client';
 import { FC } from 'react';
+import { useRecoilValue } from 'recoil';
+
+import { scoreState } from 'src/state/game/atoms';
 
 import './PlayScoreBoard.scss';
-import { useRecoilValue } from 'recoil';
-import { scoreState } from 'src/state/game/atoms';
 
 export interface PlayScoreBoardProps {}
 const PlayScoreBoard: FC<PlayScoreBoardProps> = () => {
