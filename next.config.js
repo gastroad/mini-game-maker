@@ -1,15 +1,8 @@
 /** @type {import('next').NextConfig} */
 
-const nextConfig = {
-    // async rewrites() {
-    //     return [
-    //         {
-    //             source: '/api/:path*',
-    //             destination: "http://localhost:9000/api/:path*",
-    //         },
-    //     ];
-    // },
-}
-module.exports = nextConfig
-// next.config.js
 
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+    enabled: process.env.ANALYZE === 'true',
+    openAnalyzer: true,
+})
+module.exports = withBundleAnalyzer({})
