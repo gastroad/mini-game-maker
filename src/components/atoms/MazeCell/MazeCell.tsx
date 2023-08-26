@@ -1,5 +1,4 @@
 import { FC } from 'react';
-
 import { CellType, MazeSizeType } from '@type/maze';
 
 import './MazeCell.scss';
@@ -17,7 +16,12 @@ const MazeCell: FC<MazeCellProps> = ({
   return (
     <div
       className={`maze-cell ${type}`}
-      onClick={() => {
+      draggable
+      onClick={(e) => {
+        handleMazeCellClick({ col, row });
+      }}
+      onDragEnter={() => {
+        console.log({ col, row });
         handleMazeCellClick({ col, row });
       }}
     />
