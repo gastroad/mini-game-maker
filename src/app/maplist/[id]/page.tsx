@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import { headers } from 'next/headers';
 
 import GameTemplate from '@components/templates/GameTemplate/GameTemplate';
@@ -12,6 +13,16 @@ async function getData({ id }: { id: MazeType['id'] }) {
   });
   if (!res.ok) throw new Error('Failed to fetch data');
   return res.json();
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  const headersList = headers();
+  const pathname = headersList.get('x-invoke-path') || '';
+  const { results: maze } = await getData({ id: pathname.split('/')[2] });
+  return {
+    title: `${maze.title}-${maze.name}`,
+    description: `${maze.mazeSize.col} * ${maze.mazeSize.row} 미로를 플레이하실수 있습니다.`,
+  };
 }
 
 export default async function Home() {
