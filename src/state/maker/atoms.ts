@@ -34,7 +34,7 @@ export const startEndState = atom<StartEndStateType>({
   key: 'startEndState',
   default: {
     start: { x: 0, y: 0 },
-    end: { x: 3, y: 4 },
+    end: { x: 4, y: 4 },
   },
 });
 export const resolvedPathState = atom<PointType[]>({
