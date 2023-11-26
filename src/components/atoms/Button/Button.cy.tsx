@@ -9,17 +9,16 @@ describe('Button Component', () => {
     cy.contains('button', label).should('exist');
   });
 
-  it('handles click event', () => {
+  it('handles click event', async () => {
     let clicked = false;
-    const handleClick = () => (clicked = !clicked);
-    mount(<Button label="Click me" type="primary" onClick={handleClick} />);
-    const temp = cy.contains('button', 'Click me');
-    temp.click();
-    console.warn(temp);
-
-    handleClick();
-    // 기대값 확인
-    console.log(clicked);
-    expect(clicked).to.equal(true);
+    function mockClick() {
+      clicked = !clicked;
+    }
+    mount(<Button label="Click me" type="primary" onClick={mockClick} />);
+    cy.get('button')
+      .click()
+      .then(() => {
+        expect(clicked).to.equal(true);
+      });
   });
 });

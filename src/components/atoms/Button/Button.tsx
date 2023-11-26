@@ -21,7 +21,6 @@ const Button: FC<ButtonProps> = ({
       className={`btn ${type} ${active ? 'active' : ''}`}
       onClick={onClick}
       name={name}
-      data-cy-root
     >
       {label}
     </button>
