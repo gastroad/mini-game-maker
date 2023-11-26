@@ -5,8 +5,10 @@ const createJestConfig = nextJest({
 })
 
 const customJestConfig = {
+  "preset": "jest-puppeteer",
+  testEnvironment: 'jest-environment-puppeteer',
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
-  testEnvironment: 'jest-environment-jsdom',
+  // testEnvironment: 'jest-environment-jsdom',
   collectCoverage: true,
   moduleNameMapper: {
     '^@components/(.*)$': '<rootDir>/src/components/$1',
