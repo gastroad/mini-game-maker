@@ -8,9 +8,7 @@ import PlayMazeController from '@components/organisms/PlayMazeController/PlayMaz
 import { MazeType } from '@type/maze';
 
 async function getData({ id }: { id: MazeType['id'] }) {
-  const res = await fetch(`http://localhost:3000/api/mazelist/${id}`, {
-    cache: 'no-store',
-  });
+  const res = await fetch(`http://localhost:3000/api/mazelist/${id}`);
   if (!res.ok) throw new Error('Failed to fetch data');
   return res.json();
 }
