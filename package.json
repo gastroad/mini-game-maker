@@ -11,7 +11,8 @@
     "build-storybook": "storybook build",
     "test": "jest --watch",
     "test:ci": "jest --ci",
-    "prettier": "prettier --write \"src/**/*.ts\" \"src/**/*.tsx\""
+    "prettier": "prettier --write \"src/**/*.ts\" \"src/**/*.tsx\"",
+    "test:e2e": "node E2ETest.js"
   },
   "dependencies": {
     "chromedriver": "^119.0.1",
