@@ -94,12 +94,8 @@ describe("maze-maker", () => {
         await page.keyboard.press('ArrowDown');
         await page.keyboard.press('ArrowDown');
 
-
-
-
         await page.waitForSelector('#body > div > div.score-board > span');
         let scoreText = await page.$eval('#body > div > div.score-board > span', el => el.textContent);
-        console.log(scoreText)
         await expect(scoreText).toBe('score: -6');
 
         // 골인
